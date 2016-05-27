@@ -1,26 +1,34 @@
-% rebase('base.html', title='Home', heading='Guestbook')
+% rebase('base.html', title='Write', heading='Write')
 
-<div class="app-menu">
+<div class="app-container">
+
+% for error in errors:
+  <div class="alert alert-danger" role="alert">
+    <i class="glyphicon glyphicon-exclamation-sign"></i>
+    {{ error }}
+  </div>
+% end
 
   <form method="post">
     <div class="form-group">
       <label for="title">Title</label>
-      <input type="text" class="form-control" id="title" name="title" placeholder="Message Title">
-    </div>
-    <div class="form-group">
-      <label for="author">Name</label>
-      <input type="text" class="form-control" id="author" name="author" placeholder="Your name">
+      <input type="text" class="form-control" id="title" name="title" placeholder="Message Title" value="{{ msg.get('title', '') }}">
     </div>
     <div class="form-group">
       <label for="text">Message</label>
-      <textarea class="form-control" id="text" name="text" rows="8">
-      </textarea>
+      <textarea class="form-control" id="text" name="text" rows="8">{{ msg.get('text', '') }}</textarea>
+    </div>
+    <div class="form-group">
+      <label for="author">Name</label>
+      <input type="text" class="form-control" id="author" name="author" placeholder="Your name" value="{{ msg.get('author', '') }}">
     </div>
     <div class="checkbox">
       <label>
-        <input type="checkbox" name="private"> Private message
+        <input type="checkbox" name="private" value="{{ 'checked' if msg.get('private') else '' }}"> Private message
       </label>
     </div>
+
+    <input type="hidden" name="id" value="{{ msg.get('id') }}">
 
     <div class="pull-right">
       <button type="submit" class="btn btn-primary">

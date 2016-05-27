@@ -1,0 +1,31 @@
+% rebase('base.html', title='Messages', heading='Messages')
+
+<div class="app-container">
+
+% for msg in msgs:
+<div class="list-group">
+  <a href="/messages/{{ msg.get('id') }}" class="list-group-item">
+    <h4 class="list-group-item-heading">
+      {{ msg.get("title") or "No title" }}
+      <small class="pull-right">
+        {{ msg.get("time") }}
+      </small>
+    </h4>
+    <p class="list-group-item-text">
+      {{ msg.get("author") or "Anonymous" }}
+    </p>
+  </a>
+</div>
+% end
+
+% if not msgs:
+<p>There are no messages yet.</p>
+% end
+
+  <div class="pull-right">
+    <a href="/" class="btn btn-default">
+      <i class="glyphicon glyphicon-home"></i>
+      Home
+    </a>
+  </div>
+</div>

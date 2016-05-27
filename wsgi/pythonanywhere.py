@@ -4,7 +4,6 @@
 # description.
 #
 # The below has been auto-generated for your Bottle project
-import bottle
 import os
 import sys
 
@@ -12,6 +11,8 @@ import sys
 project_home = u'/home/rvl/guestbook'
 if project_home not in sys.path:
     sys.path = [project_home] + sys.path
+
+import bottle
 
 # make sure the default templates directory is known to Bottle
 templates_dir = os.path.join(project_home, 'views/')

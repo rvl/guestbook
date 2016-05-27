@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from bottle import route, run, template, static_file, abort, request
+from bottle import route, run, template, static_file, abort, request, default_app
 import os.path
 import db
 
@@ -50,4 +50,7 @@ def message_detail(id=None):
 def callback(path):
     return static_file(path, root=os.path.join(os.path.dirname(__file__), "static"))
 
-run(host='localhost', port=8080, debug=True)
+application = default_app()
+
+if __name__ == "__main__":
+    run(host='localhost', port=8080, debug=True)
